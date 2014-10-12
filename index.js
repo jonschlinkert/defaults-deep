@@ -20,7 +20,7 @@ module.exports = function defaultsDeep(o, objects) {
       if (val == null) {
         o[key] = value;
       } else if (isObject(val) && isObject(value)) {
-        defaults(val, value);
+        defaultsDeep(val, value);
       }
     });
   });
