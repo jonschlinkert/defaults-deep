@@ -11,7 +11,7 @@ var isObject = require('is-plain-object');
 var slice = require('array-slice');
 var forOwn = require('for-own');
 
-module.exports = function defaults(o, objects) {
+module.exports = function defaultsDeep(o, objects) {
   if (o == null) return {};
   if (objects == null) return o;
   forEach(slice(arguments, 1), function (obj) {
