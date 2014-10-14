@@ -8,14 +8,18 @@
 'use strict';
 
 var isObject = require('is-plain-object');
-var slice = require('array-slice');
 var forOwn = require('for-own');
 
 module.exports = function defaultsDeep(o, objects) {
-  if (o == null) return {};
-  if (objects == null) return o;
-  forEach(slice(arguments, 1), function (obj) {
-    forOwn(obj, function (value, key) {
+  if (o == null) {
+    return {};
+  }
+  if (objects == null) {
+    return o;
+  }
+
+  function copy(o, current) {
+    forOwn(current, function (value, key) {
       var val = o[key];
       if (val == null) {
         o[key] = value;
@@ -23,18 +27,17 @@ module.exports = function defaultsDeep(o, objects) {
         defaultsDeep(val, value);
       }
     });
-  });
-  return o;
-};
+  }
 
-function forEach(arr, cb) {
-  if (arr == null) return;
-  var len = arr.length;
-  var i = -1;
+  var len = arguments.length;
+  var current;
+  var i = 0;
 
   while (++i < len) {
-    if (cb(arr[i], i, arr) === false) {
-      break;
+    current = arguments[i];
+    if (current) {
+      copy(o, current);
     }
   }
-}
+  return o;
+};
