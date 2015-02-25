@@ -1,4 +1,4 @@
-# defaults-deep [![NPM version](https://badge.fury.io/js/defaults-deep.svg)](http://badge.fury.io/js/defaults-deep)
+# defaults-deep [![NPM version](https://badge.fury.io/js/defaults-deep.svg)](http://badge.fury.io/js/defaults-deep)  [![Build Status](https://travis-ci.org/jonschlinkert/defaults-deep.svg)](https://travis-ci.org/jonschlinkert/defaults-deep) 
 
 > Like `extend` but recursively copies only the missing properties/values to the target object.
 
