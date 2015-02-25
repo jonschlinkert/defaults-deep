@@ -7,7 +7,7 @@
 
 'use strict';
 
-var should = require('should');
+require('should');
 var deepDefaults = require('./');
 
 describe('deep-defaults', function () {
