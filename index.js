@@ -10,12 +10,14 @@
 var isObject = require('is-plain-object');
 var forOwn = require('for-own');
 
-module.exports = function defaultsDeep(o, objects) {
-  if (!o || !objects) { return o || {}; }
+function defaultsDeep(o, objects) {
+  if (!isObject(o)) return {};
+  if (!isObject(objects)) return o;
 
   function copy(o, current) {
     forOwn(current, function (value, key) {
       var val = o[key];
+      // add the missing property, or allow a null property to be updated
       if (val == null) {
         o[key] = value;
       } else if (isObject(val) && isObject(value)) {
@@ -33,3 +35,9 @@ module.exports = function defaultsDeep(o, objects) {
   }
   return o;
 };
+
+/**
+ * Expose `defaultsDeep`
+ */
+
+module.exports = defaultsDeep;
