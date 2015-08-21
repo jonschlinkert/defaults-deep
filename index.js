@@ -7,20 +7,20 @@
 
 'use strict';
 
-var isObject = require('is-plain-object');
-var forOwn = require('for-own');
+var lazy = require('lazy-cache')(require);
+lazy('is-extendable', 'isObject');
+lazy('for-own', 'forOwn');
 
-function defaultsDeep(o, objects) {
-  if (!isObject(o)) return {};
-  if (!isObject(objects)) return o;
+function defaultsDeep(target, objects) {
+  target = target || {};
 
-  function copy(o, current) {
-    forOwn(current, function (value, key) {
-      var val = o[key];
+  function copy(target, current) {
+    lazy.forOwn(current, function (value, key) {
+      var val = target[key];
       // add the missing property, or allow a null property to be updated
       if (val == null) {
-        o[key] = value;
-      } else if (isObject(val) && isObject(value)) {
+        target[key] = value;
+      } else if (lazy.isObject(val) && lazy.isObject(value)) {
         defaultsDeep(val, value);
       }
     });
@@ -30,10 +30,10 @@ function defaultsDeep(o, objects) {
   while (i < len) {
     var obj = arguments[i++];
     if (obj) {
-      copy(o, obj);
+      copy(target, obj);
     }
   }
-  return o;
+  return target;
 };
 
 /**
