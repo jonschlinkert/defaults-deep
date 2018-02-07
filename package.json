@@ -25,8 +25,8 @@
     "lazy-cache": "^0.2.3"
   },
   "devDependencies": {
-    "mocha": "*",
-    "should": "*"
+    "mocha": "^3.5.3",
+    "should": "^13.2.1"
   },
   "keywords": [
     "copy",
