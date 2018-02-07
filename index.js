@@ -16,6 +16,10 @@ function defaultsDeep(target, objects) {
 
   function copy(target, current) {
     lazy.forOwn(current, function (value, key) {
+      if (key === '__proto__') {
+        return;
+      }
+
       var val = target[key];
       // add the missing property, or allow a null property to be updated
       if (val == null) {
