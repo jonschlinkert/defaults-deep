@@ -1,7 +1,7 @@
 {
   "name": "defaults-deep",
   "description": "Like `extend` but recursively copies only the missing properties/values to the target object.",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "homepage": "https://github.com/jonschlinkert/defaults-deep",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/defaults-deep",
