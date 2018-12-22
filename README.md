@@ -25,6 +25,16 @@ defaults({a: {one: 'one'}}, {a: {two: 'two'}})
 //=> {a: {one: 'one', two: 'two'}};
 ```
 
+#### TypeScript Usage
+```typescript
+import defaults from "defaults-deep";
+
+interface Data { a: {[key: string]: string}}
+
+// Specifying the data type will give you type checking!
+defaults<Data>({a: {one: 'one'}}, {a: {two: 'two'}})
+```
+
 ## Related projects
 
 * [assign-deep](https://github.com/jonschlinkert/assign-deep): Deeply assign the enumerable properties of source objects to a destination object. If a callback… [more](https://github.com/jonschlinkert/assign-deep)
