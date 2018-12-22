@@ -29,10 +29,15 @@ defaults({a: {one: 'one'}}, {a: {two: 'two'}})
 ```typescript
 import defaults from "defaults-deep";
 
-interface Data { a: {[key: string]: string}}
+interface Data { a: {[key: string]: string} }
+interface OtherData { abc: {[key: string]: string} }
 
 // Specifying the data type will give you type checking!
 defaults<Data>({a: {one: 'one'}}, {a: {two: 'two'}})
+// Returns type: Data
+
+defaults<Data, OtherData>({a: {one: 'one'}}, {abc: {two: 'two'}})
+// Returns type: Data&OtherData
 ```
 
 ## Related projects
