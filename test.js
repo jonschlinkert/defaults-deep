@@ -41,6 +41,6 @@ describe('deep-defaults', function () {
   it('should not override Object prototype', function () {
     var payload = JSON.parse('{"constructor": {"prototype": {"isAdmin": true}}}');
     deepDefaults({}, payload);
-    ({}).isAdmin.should.eql(false)
+    (({}).isAdmin || false).should.eql(false)
   })
 });
