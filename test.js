@@ -37,4 +37,10 @@ describe('deep-defaults', function () {
   it('should return an empty object when the first arg is null.', function () {
     deepDefaults(null).should.eql({});
   });
+
+  it('should not override Object prototype', function () {
+    var payload = JSON.parse('{"constructor": {"prototype": {"isAdmin": true}}}');
+    deepDefaults({}, payload);
+    ({}).isAdmin.should.eql(false)
+  })
 });
