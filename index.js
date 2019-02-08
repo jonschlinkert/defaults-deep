@@ -16,8 +16,7 @@ function defaultsDeep(target, objects) {
 
   function copy(target, current) {
     lazy.forOwn(current, function (value, key) {
-      if (key === '__proto__' ||
-        (key === 'constructor' && value && value.prototype)) {
+      if (key === '__proto__' || (key === 'constructor' && value && value.prototype)) {
         return;
       }
 
