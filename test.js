@@ -37,4 +37,21 @@ describe('deep-defaults', function () {
   it('should return an empty object when the first arg is null.', function () {
     deepDefaults(null).should.eql({});
   });
+
+  it('should prevent prototype pollution by disallowing construct properties access', function() {
+    var obj = { prototype: Object.prototype };
+
+    deepDefaults(obj, {
+      constructor: {
+        prototype: { isAdmin: true },
+        a: 'b'
+      },
+      __proto__: { a: 'b' },
+      prototype: { a: 'b' }
+    });
+    obj.constructor.should.not.have.property('a');
+    obj.__proto__.should.not.have.property('a');
+    obj.prototype.should.not.have.property('a');
+    ({}).should.not.have.property('isAdmin');
+  });
 });
