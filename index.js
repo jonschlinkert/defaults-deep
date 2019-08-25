@@ -11,12 +11,19 @@ var lazy = require('lazy-cache')(require);
 lazy('is-extendable', 'isObject');
 lazy('for-own', 'forOwn');
 
+// Prevent prototype pollution (inject properties into language construct prototypes)
+var protectedAttributes = [
+  '__proto__',
+  'constructor',
+  'prototype'
+];
+
 function defaultsDeep(target, objects) {
   target = target || {};
 
   function copy(target, current) {
     lazy.forOwn(current, function (value, key) {
-      if (key === '__proto__') {
+      if (protectedAttributes.indexOf(key) !== -1) {
         return;
       }
 
